@@ -12,7 +12,7 @@ section {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 50px;
+    padding: 80px 50px; /* Increased top/bottom padding to avoid overlap with nav */
     box-sizing: border-box;
     border-bottom: 1px solid #ddd;
 }
@@ -25,8 +25,11 @@ section {
     background-color: #e2e2e2;
 }
 
-#projects {
-    background-color: #fff;
+.about-text {
+    max-width: 500px; /* 设定最大宽度 */
+    margin: 300px auto; /* 左右自动边距，实现居中 */
+    text-align: left;
+    line-height: 1.6;
 }
 
 #contact {
@@ -35,14 +38,16 @@ section {
 
 h1, h2 {
     text-align: center;
+    margin-bottom: 40px;
 }
+
 
 .navigation {
     position: fixed;
     top: 0;
     width: 100%;
-    background-color: rgba(255, 255, 255, 0.9);
-    padding: 10px 0;
+    background-color: rgba(255, 255, 255, 0.95);
+    padding: 15px 0;
     z-index: 1000;
     text-align: center;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
@@ -57,39 +62,79 @@ h1, h2 {
 
 .navigation ul li {
     display: inline;
-    margin: 0 20px;
+    margin: 0 5px; /* 稍微减少li之间的边距，因为内边距会增加空间 */
 }
 
+/* 步骤 1: 为所有链接设置基础样式 */
 .navigation a {
     text-decoration: none;
     color: #333;
     font-weight: bold;
-    transition: color 0.3s;
+    font-size: 16px;
+    padding: 8px 18px; /* 这是关键！增加了内边距来撑开空间 */
+    border-radius: 999px; /* 这是关键！使用一个超大值来确保两端是完美的圆形 */
+    transition: background-color 0.3s ease, color 0.3s ease; /* 让切换效果更平滑 */
 }
 
-.navigation a:hover,
 .navigation a.active {
-    color: #007BFF;
+    color: #000;
+    background-color: #f0f0f0;
 }
 
-.project-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 20px;
+.navigation a:hover {
+    color: #555;
+}
+
+
+/* New Project Section Styles */
+.project-section {
+    background-color: #fff;
+}
+
+.project-section:nth-child(odd) {
+    background-color: #f9f9f9; /* Alternating background color for projects */
+}
+
+.project-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 50px;
     width: 100%;
     max-width: 1200px;
-    margin-top: 40px;
+    flex-wrap: wrap; /* Allow items to wrap on smaller screens */
 }
 
-.project-item {
-    background-color: #fff;
-    border: 1px solid #ddd;
-    padding: 20px;
-    text-align: center;
-}
-
-.project-item img {
-    max-width: 100%;
+.project-content img {
+    max-width: 50%;
     height: auto;
-    margin-bottom: 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.project-description {
+    max-width: 40%;
+}
+
+.project-description h3 {
+    font-size: 2em;
+    margin-bottom: 20px;
+}
+
+.project-description p {
+    font-size: 1.1em;
+    line-height: 1.7;
+}
+
+/* Responsive design for smaller screens */
+@media (max-width: 768px) {
+    .project-content {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .project-content img,
+    .project-description {
+        max-width: 90%;
+    }
 }
